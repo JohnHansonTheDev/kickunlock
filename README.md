@@ -3,7 +3,7 @@
 <img src="assets/logo.png" width="520" alt="KickUnlock — kick the lock off any Kick stream" />
 
 [![Stars](https://img.shields.io/github/stars/JohnHansonTheDev/kickunlock?style=social)](https://github.com/JohnHansonTheDev/kickunlock/stargazers)
-[![Version](https://img.shields.io/github/v/release/JohnHansonTheDev/kickunlock?label=version&color=53fc18)](https://github.com/JohnHansonTheDev/kickunlock/releases)
+[![Version](https://img.shields.io/github/v/release/JohnHansonTheDev/kickunlock?label=version&color=53fc18&include_prereleases)](https://github.com/JohnHansonTheDev/kickunlock/releases)
 [![Platform](https://img.shields.io/badge/platform-Windows-blue)](https://github.com/JohnHansonTheDev/kickunlock/releases)
 [![License](https://img.shields.io/github/license/JohnHansonTheDev/kickunlock)](LICENSE)
 [![Downloads](https://img.shields.io/github/downloads/JohnHansonTheDev/kickunlock/total)](https://github.com/JohnHansonTheDev/kickunlock/releases)
