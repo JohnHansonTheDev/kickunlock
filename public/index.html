@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>KickUnlock — free Kick streams</title>
+<link rel="stylesheet" href="style.css" />
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.20/dist/hls.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="brand">🔓 KICK<span>UNLOCK</span> <small class="dim">v1.0.0-alpha</small></div>
+  <div class="controls">
+    <div class="seg">
+      <button id="tabBrowse" class="on">Browse</button><button id="tabSingle">Single</button><button id="tabWall">Wall <span id="wallCount"></span></button>
+    </div>
+    <input id="search" placeholder="Search live…" />
+    <input id="chanInput" placeholder="kick.com/channel…" style="width:150px" />
+    <button id="chanGo" title="open channel URL">↪</button>
+    <button id="reload">⟳ Reload</button>
+  </div>
+</header>
+
+<div id="safety">🟢 Direct Kick HLS — no ads, no embeds. Everything plays, mutes, clips and trims natively.</div>
+
+<main>
+  <section id="guide">
+    <div id="status">Loading…</div>
+    <div id="favs"></div>
+    <div id="cats"></div>
+    <div id="events"></div>
+  </section>
+  <section id="stage">
+   <div id="viewSingle">
+    <div id="playerWrap">
+      <div id="placeholder">Pick a live channel → watch</div>
+      <video id="hls" controls playsinline></video>
+      <button id="trimFab" hidden title="trim mode: pause + pick start/end">✂</button>
+      <div id="trimPanel" hidden>
+        <div id="tl">
+          <div id="tlBuf"></div><div id="tlSel"></div>
+          <div id="hStart" class="hdl" title="clip start ◀ drag me"></div>
+          <div id="hEnd" class="hdl" title="drag me ▶ clip end"></div>
+          <div id="tlPlay"></div>
+        </div>
+        <div class="row trow"><span id="tlTimes" class="dim"></span></div>
+        <div class="row trow">
+          <button id="loopBtn">▶ Loop</button>
+          <button id="exportBtn">⬇ Export</button>
+          <button id="trimClose">✕</button>
+          <span id="trimStat" class="dim"></span>
+        </div>
+      </div>
+      <div id="osd" hidden></div>
+      <div id="tcode" hidden></div>
+    </div>
+    <div id="pvWrap" hidden>
+      <div id="pvBar"><div id="pvBuf"></div><div id="pvProg"></div><div id="pvHead"></div></div>
+      <div id="pvPop" hidden><canvas id="pvCanvas" width="160" height="90"></canvas><div id="pvTime"></div></div>
+    </div>
+    <div id="meta">
+      <h2 id="eventTitle">No channel selected</h2>
+      <div id="modeBadge"></div>
+      <div id="streamBtns"></div>
+      <div class="row">
+        <button id="fs">⛶ Fullscreen</button>
+        <button id="wallAdd">+ Wall</button>
+        <button id="favStar" title="favorite this channel">☆ Fav</button>
+        <a id="srcLink" target="_blank" rel="noopener">kick.com ↗</a>
+      </div>
+      <div class="row">
+        <label>✂ Clip <select id="clipSecs">
+          <option value="10">10s</option>
+          <option value="30" selected>30s</option>
+          <option value="60">60s</option>
+          <option value="120">120s</option>
+        </select></label>
+        <button id="clipBtn" disabled>✂ Record clip</button>
+        <span id="clipStat" class="dim"></span>
+      </div>
+      <div id="clipList"></div>
+      <div class="row">
+        <button id="optToggle">⚙ Player keys</button>
+        <span class="dim" id="keyHint"></span>
+      </div>
+      <div id="optPanel" hidden>
+        <div class="row">
+          <span>Speed</span>
+          <button class="spd" data-s="0.5">0.5x</button>
+          <button class="spd" data-s="1">1x</button>
+          <button class="spd" data-s="1.5">1.5x</button>
+          <button class="spd" data-s="2">2x</button>
+          <button class="spd" data-s="4">4x</button>
+        </div>
+        <div class="row">
+          <label>Rewind key <input id="optRwKey" maxlength="1" style="width:36px" /></label>
+          <label>Back (s) <input id="optRwSec" type="number" min="1" max="120" style="width:56px" /></label>
+          <label>FF key <input id="optFfKey" maxlength="1" style="width:36px" /></label>
+          <label>FF speed <input id="optFfSpd" type="number" min="1.25" max="8" step="0.25" style="width:56px" /></label>
+          <button id="optReset">defaults</button>
+        </div>
+      </div>
+      <div class="row">
+        <label>Fit <select id="fitMode">
+          <option value="width">↔ width</option>
+          <option value="screen">⛶ screen</option>
+        </select></label>
+        <label>Size <input id="sizeW" type="range" min="40" max="100" value="100" /> <span id="sizeLbl">100%</span></label>
+        <label class="toggle"><input type="checkbox" id="theater" /> theater</label>
+      </div>
+      <div id="eventInfo"></div>
+    </div>
+   </div><!-- /viewSingle -->
+    <div id="viewWall" hidden>
+      <div class="row wallbar">
+        <b>🧱 Wall <span id="wallN">0</span>/6</b>
+        <button id="wallMuteAll">🔇 Mute all</button>
+        <button id="wallClear">✕ Close all</button>
+        <small class="dim">“+ Wall” on any channel to watch side by side</small>
+      </div>
+      <div id="wallEmpty">Wall is empty — pick channels, then “+ Wall”.</div>
+      <div id="wall"></div>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

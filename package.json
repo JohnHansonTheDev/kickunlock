@@ -1,0 +1,13 @@
+{
+  "name": "kickunlock",
+  "version": "1.0.0-alpha",
+  "description": "KickUnlock — watch Kick streams free: browse, wall, clips",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}

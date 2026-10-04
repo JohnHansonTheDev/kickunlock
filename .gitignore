@@ -1,0 +1,12 @@
+# deps (restore with npm install)
+node_modules/
+# portable runtime (90MB — grab the release zip instead)
+runtime/
+# your recordings — never commit these
+clips/*.ts
+clips/*.mp4
+clips/*.webm
+# local scratch / OS junk
+*.log
+.DS_Store
+Thumbs.db
